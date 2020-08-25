@@ -1,2 +1,4 @@
 # Convert_Object_Detection_Labels_Formats
-Convert labels format between YOLO and Pascal_Voc
+
+## About the repo:  
+This repo contain Python scripts to convert label files from YOLO to Pascal format and the other way around.
