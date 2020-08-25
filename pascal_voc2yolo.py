@@ -11,7 +11,7 @@ class Pascal2Yolo:
         images_list = glob.glob(path + '/*.jpg')
         return images_list
 
-    def convert(self, size, box):
+    def convert_coords(self, size, box):
         dw = 1./(size[0])
         dh = 1./(size[1])
         x = (box[0] + box[1])/2.0 - 1
