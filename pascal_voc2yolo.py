@@ -1,5 +1,6 @@
 import glob
 import os
+import shutil
 import xml.etree.ElementTree as ET
 
 
@@ -29,7 +30,7 @@ class Pascal2Yolo:
         basename_no_ext = os.path.splitext(basename)[0]
 
         in_file = open(dir_path + '/' + basename_no_ext + '.xml')
-        out_file = open(output_path + basename_no_ext + '.txt', 'w')
+        out_file = open(output_path + '/' + basename_no_ext + '.txt', 'w')
         tree = ET.parse(in_file)
         root = tree.getroot()
         size = root.find('size')
@@ -52,12 +53,15 @@ class Pascal2Yolo:
                            " ".join([str(a) for a in bb]) + '\n')
 
     def convert(self, path):
+        print('[INFO]: start processing:' + path)
         yolo_path = path.split('/')[-1] + '_yolo'
         if not os.path.exists(yolo_path):
             os.makedirs(yolo_path)
         images_paths = self.get_images_paths(path=path)
         list_file = open(path.split('/')[-1] + '.txt', 'w')
         for image_path in images_paths:
+            shutil.copy2(image_path, yolo_path + '/')
             list_file.write(image_path + '\n')
             self.convert_annotation(path, yolo_path, image_path)
         list_file.close()
+        print('[INFO]: finished processing:' + path)
