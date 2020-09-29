@@ -51,6 +51,8 @@ class Pascal2Yolo:
             bb = self.convert_coords((w, h), b)
             out_file.write(str(cls_id) + " " +
                            " ".join([str(a) for a in bb]) + '\n')
+        in_file.close()
+        out_file.close()
 
     def convert(self, path):
         print('[INFO]: start processing:' + path)
