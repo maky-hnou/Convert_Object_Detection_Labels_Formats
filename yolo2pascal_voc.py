@@ -95,7 +95,7 @@ class Yolo2Pascal:
                     node_ymax = SubElement(node_bndbox, 'ymax')
                     node_ymax.text = str(new_label[4])
                     xml = tostring(node_root, pretty_print=True)
-                    dom = parseString(xml)
+                    parseString(xml)
             xml_file = os.path.splitext(base_image_path)[0] + '.xml'
             f = open(os.path.join(pascal_path, xml_file), "wb")
             f.write(xml)
