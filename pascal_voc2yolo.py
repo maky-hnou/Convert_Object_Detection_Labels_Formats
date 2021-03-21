@@ -62,7 +62,7 @@ class Pascal2Yolo:
         images_paths = self.get_images_paths(path=path)
         list_file = open(path.split('/')[-1] + '.txt', 'w')
         with open(yolo_path + '/classes.txt', 'w') as classes_file:
-            [classes_file.write(category) for category in self.classes]
+            [classes_file.write(category + '\n') for category in self.classes]
         for image_path in images_paths:
             shutil.copy2(image_path, yolo_path + '/')
             list_file.write(image_path + '\n')
